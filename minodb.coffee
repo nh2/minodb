@@ -63,7 +63,7 @@ new mongodb.Db(DB_NAME, server, { safe: true }).open (error, client) ->
   app.post "/put", (req, res) ->
     obj = req.body
     debug_print_query '/put', obj
-    collection.update { uid: obj.id }, obj, { upsert: true }, (err, client) ->
+    collection.update { id: obj.id }, obj, { upsert: true }, (err, client) ->
       if err
         console.warn err.message
         res.send 500, '/put failed'
