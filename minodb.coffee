@@ -43,7 +43,7 @@ new mongodb.Db(DB_NAME, server, { safe: true }).open (error, client) ->
 
   app.get "/", (req, res) ->
     debug_print_query '/'
-    res.send 'mindob running'
+    res.send 'minodb running'
 
   app.get "/list", (req, res) ->
     collection.find().toArray (err, results) ->
