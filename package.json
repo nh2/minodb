@@ -1,0 +1,40 @@
+{
+  "name": "minodb",
+  "version": "0.1.0",
+  "author": "Niklas Hambuechen <mail@nh2.me>",
+  "description": "minimal object database HTTP interface for quick prototyping (in coffeescript on mongodb)",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Nilkas Hambuechen",
+      "email": "mail@nh2.me"
+    }
+  ],
+  "bin": {
+    "minodb": "./bin/minodb"
+  },
+  "scripts": {
+    "start": "node ./bin/minodb"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nh2/minodb.git"
+  },
+  "keywords": [
+    "database",
+    "db",
+    "http",
+    "mongo",
+    "mongodb",
+    "server"
+  ],
+  "dependencies": {
+    "express": "3.0.x",
+    "mongodb": "1.1.x",
+    "coffee-script": "1.2.x"
+  },
+  "analyze": false,
+  "engines": {
+    "node": ">=0.8"
+  }
+}
