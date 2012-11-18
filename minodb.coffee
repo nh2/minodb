@@ -43,12 +43,12 @@ new mongodb.Db(DB_NAME, server, { safe: true }).open (error, client) ->
 
   app.get "/", (req, res) ->
     debug_print_query '/'
-    res.send 'minodb running'
+    res.jsonp "minodb running"
 
   app.get "/list", (req, res) ->
     collection.find().toArray (err, results) ->
       debug_print_query_result '/list', results
-      res.send JSON.stringify(results)
+      res.jsonp results
 
   app.get "/get/:id?", (req, res) ->
     id = req.params.id
@@ -56,7 +56,7 @@ new mongodb.Db(DB_NAME, server, { safe: true }).open (error, client) ->
       debug_print_query '/get', { id: id }
       collection.find({ _id: id }, { limit: 1 }).toArray (err, results) ->
         debug_print_query_result '/get', results
-        res.send JSON.stringify(results)
+        res.jsonp results
     else
       res.send 400, 'missing id for /get/[id]'
 
@@ -68,7 +68,7 @@ new mongodb.Db(DB_NAME, server, { safe: true }).open (error, client) ->
         console.warn err.message
         res.send 500, '/put failed'
       else
-        res.send ""
+        res.jsonp ""
 
   app.post "/drop", (req, res) ->
     console.warn 'DROPPING COLLECTION'
@@ -76,6 +76,6 @@ new mongodb.Db(DB_NAME, server, { safe: true }).open (error, client) ->
       if err
         console.warn err.message
         res.send 500, '/drop failed'
-    res.send "collection dropped"
+    res.jsonp "collection dropped"
 
   app.listen HTTP_PORT, HTTP_HOST
