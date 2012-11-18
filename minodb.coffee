@@ -54,7 +54,7 @@ new mongodb.Db(DB_NAME, server, { safe: true }).open (error, client) ->
     id = req.params.id
     if id
       debug_print_query '/get', { id: id }
-      collection.find({ id: id }, { limit: 1 }).toArray (err, results) ->
+      collection.find({ _id: id }, { limit: 1 }).toArray (err, results) ->
         debug_print_query_result '/get', results
         res.send JSON.stringify(results)
     else
@@ -63,7 +63,7 @@ new mongodb.Db(DB_NAME, server, { safe: true }).open (error, client) ->
   app.post "/put", (req, res) ->
     obj = req.body
     debug_print_query '/put', obj
-    collection.update { id: obj.id }, obj, { upsert: true }, (err, client) ->
+    collection.save obj, (err, client) ->
       if err
         console.warn err.message
         res.send 500, '/put failed'
